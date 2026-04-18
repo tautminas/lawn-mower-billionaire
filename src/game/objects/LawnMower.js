@@ -13,21 +13,21 @@ export default class LawnMower extends Phaser.Physics.Arcade.Image {
     this.angle = 0;
     this.driveAngleOffset = Phaser.Math.DegToRad(-90);
 
-    this.body.angularDrag = 100;
-    this.body.maxSpeed = 1024;
+    this.body.angularDrag = 800;
+    this.body.maxSpeed = 350;
 
-    this.body.setSize(64, 64, true);
+    this.body.setSize(600, 600, true);
   }
 
   update(delta, cursorKeys) {
     const { left, right, up, down } = cursorKeys;
 
     if (up.isDown) {
-      this.throttle += 0.7 * delta;
+      this.throttle += 0.5 * delta;
     } else if (down.isDown) {
       this.throttle -= 3.0 * delta;
     } else {
-      this.throttle = Phaser.Math.Linear(this.throttle, 0, 0.05);
+      this.throttle = Phaser.Math.Linear(this.throttle, 0, 0.1);
     }
 
     this.throttle = Phaser.Math.Clamp(this.throttle, -256, 2048);
@@ -50,7 +50,7 @@ export default class LawnMower extends Phaser.Physics.Arcade.Image {
     );
 
     this.body.maxAngular = Phaser.Math.Clamp(
-      (120 * this.body.speed) / 1024,
+      (120 * this.body.speed) / 512,
       0,
       120,
     );
