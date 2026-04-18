@@ -4,7 +4,7 @@ export default class UI {
   constructor(scene) {
     this.scene = scene;
 
-    this.scoreText = scene.add.text(20, 20, "Score: 0", {
+    this.scoreText = scene.add.text(20, 20, "Cash: 0", {
       fontSize: "24px",
       color: "#ffffff",
     });
@@ -14,6 +14,6 @@ export default class UI {
   }
 
   setScore(score) {
-    this.scoreText.setText("Score: " + score);
+    this.scoreText.setText("Cash: " + score);
   }
 }

@@ -30,13 +30,13 @@ export class Game extends Scene {
     this.ui = new UI(this);
     this.ui.setScore(this.score);
 
-    this.physics.add.overlap(this.mower, this.grass, () => {
-      console.log("Grass hit!");
+    this.physics.add.overlap(this.mower, this.grass, (mower, grass) => {
+      if (grass.isCut) return;
 
-      this.grass.body.enable = false;
-
-      this.score += 1;
-      this.ui.setScore(this.score);
+      grass.cut(() => {
+        this.score += 1;
+        this.ui.setScore(this.score);
+      });
     });
   }
 
