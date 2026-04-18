@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import LawnMower from "../objects/LawnMower.js";
+import Grass from "../objects/Grass.js";
 
 export class Game extends Scene {
   constructor() {
@@ -11,6 +12,7 @@ export class Game extends Scene {
 
     this.load.image("lawn-mower", "lawn-mower.png");
     this.load.image("logo", "logo.png");
+    this.load.image("grass", "grass.png");
   }
 
   create() {
@@ -19,6 +21,13 @@ export class Game extends Scene {
     this.physics.add.existing(this.mower);
     this.mower.configure();
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.grass = new Grass(this, 400, 300);
+
+    this.physics.add.overlap(this.mower, this.grass, () => {
+      console.log("Grass hit!");
+      this.grass.body.enable = false;
+    });
   }
 
   update(time, delta) {
