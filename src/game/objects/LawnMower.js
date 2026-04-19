@@ -7,7 +7,7 @@ export default class LawnMower extends Phaser.Physics.Arcade.Image {
     super(scene, x, y, texture);
     this.setOrigin(0.5);
     this.setScale(0.1);
-    this.setDepth(1);
+    this.setDepth(10);
   }
 
   configure() {

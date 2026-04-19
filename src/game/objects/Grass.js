@@ -38,7 +38,7 @@ export default class Grass extends Phaser.Physics.Arcade.Image {
       onComplete: () => {
         this.setVisible(false);
 
-        if (onComplete) onComplete();
+        this.scene.events.emit("grassCut", this.x, this.y);
 
         this.scene.time.delayedCall(5000, () => {
           this.respawn();
