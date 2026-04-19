@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import LawnMower from "../objects/LawnMower.js";
+import Tractor from "../objects/Tractor.js";
 import Grass from "../objects/Grass.js";
 import Euro from "../objects/Euro.js";
 import UI from "../objects/UI.js";
@@ -16,9 +17,12 @@ export class Game extends Scene {
     this.load.image("logo", "logo.png");
     this.load.image("grass", "grass.png");
     this.load.image("euro", "euro.png");
+    this.load.image("tractor", "tractor.png");
   }
 
   create() {
+    this.isGameOver = false;
+
     this.mower = new LawnMower(this, 512, 384, "lawn-mower");
     this.add.existing(this.mower);
     this.physics.add.existing(this.mower);
@@ -32,6 +36,8 @@ export class Game extends Scene {
     this.ui = new UI(this);
     this.ui.setScore(this.score);
 
+    this.tractor = new Tractor(this, 700, 100);
+
     this.physics.add.overlap(this.mower, this.grass, (mower, grass) => {
       if (grass.isCut) return;
       grass.cut();
@@ -42,6 +48,12 @@ export class Game extends Scene {
       euro.goUp();
       this.score += 1;
       this.ui.setScore(this.score);
+    });
+
+    this.physics.add.overlap(this.mower, this.tractor, () => {
+      if (this.isGameOver) return;
+      this.isGameOver = true;
+      console.log("GAME OVER!");
     });
   }
 
