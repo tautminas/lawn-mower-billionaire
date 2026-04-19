@@ -56,5 +56,6 @@ export class Game extends Scene {
 
   update(time, delta) {
     this.mower.update(delta, this.cursors);
+    this.tractor.update();
   }
 }
