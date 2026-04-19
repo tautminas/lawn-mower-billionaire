@@ -39,6 +39,7 @@ export default class Tractor extends Phaser.Physics.Arcade.Image {
     this.targetY = end.y;
 
     const angle = Phaser.Math.Angle.Between(start.x, start.y, end.x, end.y);
+    this.flipY = Math.abs(angle) > Math.PI / 2;
 
     this.rotation = angle;
 
