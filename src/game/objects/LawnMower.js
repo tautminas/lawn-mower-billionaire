@@ -9,21 +9,17 @@ export default class LawnMower extends Phaser.Physics.Arcade.Image {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    this.configure();
-
-    this.setOrigin(0.5);
-    this.setScale(0.1);
-    this.setDepth(10);
-  }
-
-  configure() {
     this.angle = 0;
     this.driveAngleOffset = Phaser.Math.DegToRad(-90);
 
     this.body.angularDrag = 800;
     this.body.maxSpeed = 350;
-
     this.body.setSize(600, 600, true);
+
+    this.setOrigin(0.5);
+    this.setScale(0.1);
+    this.setDepth(10);
+    this.setCollideWorldBounds(true);
   }
 
   update(delta, cursorKeys) {
