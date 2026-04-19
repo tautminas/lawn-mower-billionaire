@@ -3,8 +3,14 @@ import * as Phaser from "phaser";
 export default class LawnMower extends Phaser.Physics.Arcade.Image {
   throttle = 0;
 
-  constructor(scene, x, y, texture) {
-    super(scene, x, y, texture);
+  constructor(scene, x, y) {
+    super(scene, x, y, "lawn-mower");
+
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
+
+    this.configure();
+
     this.setOrigin(0.5);
     this.setScale(0.1);
     this.setDepth(10);

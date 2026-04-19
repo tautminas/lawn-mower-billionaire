@@ -23,12 +23,9 @@ export class Game extends Scene {
   create() {
     this.isGameOver = false;
 
-    this.mower = new LawnMower(this, 512, 384, "lawn-mower");
-    this.add.existing(this.mower);
-    this.physics.add.existing(this.mower);
-    this.mower.configure();
-
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.mower = new LawnMower(this, 512, 384);
 
     this.grass = new Grass(this, 400, 300);
 
