@@ -7,8 +7,8 @@ export default class Tractor extends Phaser.Physics.Arcade.Image {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    this.body.setImmovable(true);
     this.body.setAllowGravity(false);
+    this.body.setSize(600, 600, true);
 
     this.setOrigin(0.5);
     this.setScale(0.12);
