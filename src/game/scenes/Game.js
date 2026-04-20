@@ -22,6 +22,7 @@ export class Game extends Scene {
 
   create() {
     this.isGameOver = false;
+    this.delay = 2000;
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -33,11 +34,25 @@ export class Game extends Scene {
     this.ui = new UI(this);
     this.ui.setScore(this.score);
 
-    this.tractor = new Tractor(this, 700, 100);
+    this.tractors = this.add.group();
+    this.tractors.add(new Tractor(this, 0, 0));
+    this.time.addEvent({
+      delay: this.delay,
+      loop: true,
+      callback: () => {
+        this.tractors.add(new Tractor(this, 0, 0));
+      },
+    });
 
     this.physics.add.overlap(this.mower, this.grass, (mower, grass) => {
       if (grass.isCut) return;
       grass.cut();
+    });
+
+    this.physics.add.overlap(this.mower, this.tractors, () => {
+      if (this.isGameOver) return;
+      this.isGameOver = true;
+      console.log("GAME OVER!");
     });
 
     this.events.on("grassCut", (x, y) => {
@@ -46,16 +61,9 @@ export class Game extends Scene {
       this.score += 1;
       this.ui.setScore(this.score);
     });
-
-    this.physics.add.overlap(this.mower, this.tractor, () => {
-      if (this.isGameOver) return;
-      this.isGameOver = true;
-      console.log("GAME OVER!");
-    });
   }
 
   update(time, delta) {
     this.mower.update(delta, this.cursors);
-    this.tractor.update();
   }
 }

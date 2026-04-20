@@ -18,6 +18,7 @@ export default class Tractor extends Phaser.Physics.Arcade.Image {
     this.spawnOffset = Math.max(this.displayWidth, this.displayHeight) * 1.1;
 
     this.setupPath();
+    this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
   }
 
   setupPath() {
