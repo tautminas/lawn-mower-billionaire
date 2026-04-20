@@ -28,7 +28,17 @@ export class Game extends Scene {
 
     this.mower = new LawnMower(this, 512, 384);
 
-    this.grass = new Grass(this, 400, 300);
+    this.grassGroup = this.add.group();
+    const cam = this.cameras.main;
+    const temp = new Grass(this, 0, 0);
+    const stepX = temp.displayWidth;
+    const stepY = temp.displayHeight;
+    temp.destroy();
+    for (let x = stepX / 2; x < cam.width; x += stepX) {
+      for (let y = stepY / 2; y < cam.height; y += stepY) {
+        this.grassGroup.add(new Grass(this, x, y));
+      }
+    }
 
     this.score = 0;
     this.ui = new UI(this);
@@ -44,7 +54,7 @@ export class Game extends Scene {
       },
     });
 
-    this.physics.add.overlap(this.mower, this.grass, (mower, grass) => {
+    this.physics.add.overlap(this.mower, this.grassGroup, (mower, grass) => {
       if (grass.isCut) return;
       grass.cut();
     });
