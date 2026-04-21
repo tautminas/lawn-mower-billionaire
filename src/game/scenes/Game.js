@@ -4,6 +4,7 @@ import Tractor from "../objects/Tractor.js";
 import Grass from "../objects/Grass.js";
 import Euro from "../objects/Euro.js";
 import UI from "../objects/UI.js";
+import * as Phaser from "phaser";
 
 export class Game extends Scene {
   constructor() {
@@ -25,6 +26,9 @@ export class Game extends Scene {
     this.delay = 2000;
 
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.escKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.ESC,
+    );
 
     this.mower = new LawnMower(this, 512, 384);
 
@@ -75,5 +79,9 @@ export class Game extends Scene {
 
   update(time, delta) {
     this.mower.update(delta, this.cursors);
+
+    if (Phaser.Input.Keyboard.JustDown(this.escKey)) {
+      this.scene.start("MainMenu");
+    }
   }
 }
