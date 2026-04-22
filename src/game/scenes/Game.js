@@ -11,6 +11,10 @@ export class Game extends Scene {
     super("Game");
   }
 
+  init() {
+    this.score = 0;
+  }
+
   preload() {
     this.load.setPath("assets");
 
@@ -44,7 +48,6 @@ export class Game extends Scene {
       }
     }
 
-    this.score = 0;
     this.ui = new UI(this);
     this.ui.setScore(this.score);
 
@@ -69,11 +72,15 @@ export class Game extends Scene {
       console.log("GAME OVER!");
     });
 
+    this.events.off("grassCut");
     this.events.on("grassCut", (x, y) => {
       const euro = new Euro(this, x, y);
       euro.goUp();
       this.score += 1;
       this.ui.setScore(this.score);
+      if (this.score >= 100) {
+        this.scene.start("WinScene");
+      }
     });
   }
 
