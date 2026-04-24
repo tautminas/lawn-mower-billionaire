@@ -13,6 +13,9 @@ export class Game extends Scene {
 
   init() {
     this.score = 0;
+    this.targetEuros = 1000000000;
+    this.targetGrass = 490;
+    this.eurosPerGrass = this.targetEuros / this.targetGrass;
   }
 
   preload() {
@@ -82,8 +85,8 @@ export class Game extends Scene {
       const euro = new Euro(this, x, y);
       euro.goUp();
       this.score += 1;
-      this.ui.setScore(this.score);
-      if (this.score >= 100) {
+      this.ui.setScore(this.score * this.eurosPerGrass);
+      if (this.score >= this.targetGrass) {
         this.scene.start("WinScene");
       }
     });

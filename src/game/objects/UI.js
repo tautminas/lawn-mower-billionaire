@@ -16,7 +16,8 @@ export default class UI {
   }
 
   setScore(score) {
-    this.scoreText.setText("Cash: " + score + " €");
+    const formattedScore = score.toLocaleString('en-US', { maximumFractionDigits: 0 }).replace(/,/g, ' ');
+    this.scoreText.setText("Cash: " + formattedScore + " €");
   }
 
   showGameOver() {
