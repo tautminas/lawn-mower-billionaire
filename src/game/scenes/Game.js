@@ -33,6 +33,9 @@ export class Game extends Scene {
     this.escKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.ESC,
     );
+    this.enterKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.ENTER,
+    );
 
     this.mower = new LawnMower(this, 512, 384);
 
@@ -69,11 +72,13 @@ export class Game extends Scene {
     this.physics.add.overlap(this.mower, this.tractors, () => {
       if (this.isGameOver) return;
       this.isGameOver = true;
-      console.log("GAME OVER!");
+      this.mower.disableBody();
+      this.ui.showGameOver();
     });
 
     this.events.off("grassCut");
     this.events.on("grassCut", (x, y) => {
+      if (this.isGameOver) return;
       const euro = new Euro(this, x, y);
       euro.goUp();
       this.score += 1;
@@ -85,6 +90,12 @@ export class Game extends Scene {
   }
 
   update(time, delta) {
+    if (Phaser.Input.Keyboard.JustDown(this.enterKey) && this.isGameOver) {
+      this.scene.restart();
+    }
+
+    if (this.isGameOver) return;
+
     this.mower.update(delta, this.cursors);
 
     if (Phaser.Input.Keyboard.JustDown(this.escKey)) {
