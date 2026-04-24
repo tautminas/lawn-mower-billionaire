@@ -14,7 +14,7 @@ export class Game extends Scene {
   init() {
     this.score = 0;
     this.targetEuros = 1000000000;
-    this.targetGrass = 490;
+    this.targetGrass = 1234;
     this.eurosPerGrass = this.targetEuros / this.targetGrass;
   }
 
@@ -59,12 +59,35 @@ export class Game extends Scene {
 
     this.tractors = this.add.group();
     this.tractors.add(new Tractor(this, 0, 0));
-    this.time.addEvent({
+    this.tractorSpawnEvent = this.time.addEvent({
       delay: this.delay,
       loop: true,
       callback: () => {
         this.tractors.add(new Tractor(this, 0, 0));
       },
+    });
+
+    this.difficultyEvent = this.time.addEvent({
+      delay: 5000,
+      loop: true,
+      callback: () => {
+        if (!this.isGameOver && this.delay > 300) {
+          this.delay -= 100;
+          this.tractorSpawnEvent.remove();
+          this.tractorSpawnEvent = this.time.addEvent({
+            delay: this.delay,
+            loop: true,
+            callback: () => {
+              this.tractors.add(new Tractor(this, 0, 0));
+            },
+          });
+        }
+      },
+    });
+
+    this.events.on("shutdown", () => {
+      this.difficultyEvent.remove();
+      this.tractorSpawnEvent.remove();
     });
 
     this.physics.add.overlap(this.mower, this.grassGroup, (mower, grass) => {
