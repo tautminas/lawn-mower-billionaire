@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
 import * as Phaser from "phaser";
 import Grass from "../objects/Grass.js";
+import { AudioMixin } from "../mixins/AudioMixin.js";
 
 export class MainMenu extends Scene {
   constructor() {
@@ -12,9 +13,12 @@ export class MainMenu extends Scene {
 
     this.load.image("grass", "grass.png");
     this.load.image("logo", "logo.png");
+    this.preloadAudio();
   }
 
   create() {
+    this.playBackgroundMusic();
+
     const temp = new Grass(this, 0, 0);
     const stepX = temp.displayWidth;
     const stepY = temp.displayHeight;
@@ -114,3 +118,5 @@ export class MainMenu extends Scene {
     }
   }
 }
+
+Object.assign(MainMenu.prototype, AudioMixin);

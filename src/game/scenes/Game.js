@@ -5,6 +5,7 @@ import Grass from "../objects/Grass.js";
 import Euro from "../objects/Euro.js";
 import UI from "../objects/UI.js";
 import * as Phaser from "phaser";
+import { AudioMixin } from "../mixins/AudioMixin.js";
 
 export class Game extends Scene {
   constructor() {
@@ -26,9 +27,12 @@ export class Game extends Scene {
     this.load.image("grass", "grass.png");
     this.load.image("euro", "euro.png");
     this.load.image("tractor", "tractor.png");
+    this.preloadAudio();
   }
 
   create() {
+    this.playBackgroundMusic();
+
     this.isGameOver = false;
     this.delay = 2000;
 
@@ -129,3 +133,5 @@ export class Game extends Scene {
     }
   }
 }
+
+Object.assign(Game.prototype, AudioMixin);

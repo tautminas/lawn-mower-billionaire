@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import * as Phaser from "phaser";
+import { AudioMixin } from "../mixins/AudioMixin.js";
 
 export class WinScene extends Scene {
   constructor() {
@@ -10,9 +11,12 @@ export class WinScene extends Scene {
     this.load.setPath("assets");
 
     this.load.image("logo", "logo.png");
+    this.preloadAudio();
   }
 
   create() {
+    this.playBackgroundMusic();
+
     this.congratsText = this.add
       .text(
         this.scale.width / 2,
@@ -98,3 +102,5 @@ export class WinScene extends Scene {
     }
   }
 }
+
+Object.assign(WinScene.prototype, AudioMixin);
