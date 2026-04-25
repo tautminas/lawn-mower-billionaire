@@ -24,6 +24,8 @@ export class WinScene extends Scene {
         "Thank you for playing!",
         {
           fontSize: "50px",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
@@ -35,7 +37,8 @@ export class WinScene extends Scene {
         "Congratulations on becoming a billionaire! 🎉",
         {
           fontSize: "20px",
-          fill: "#ffffff",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
@@ -47,7 +50,8 @@ export class WinScene extends Scene {
         "Game created by Tautminas Cibulskis for GameDev.js game jam 2026",
         {
           fontSize: "20px",
-          fill: "#ffffff",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
@@ -59,7 +63,8 @@ export class WinScene extends Scene {
         "Press ENTER to play again",
         {
           fontSize: "32px",
-          fill: "#fff",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
@@ -79,7 +84,8 @@ export class WinScene extends Scene {
     this.add
       .text(this.scale.width - 121, this.scale.height - 100, "Made with", {
         fontSize: "20px",
-        fill: "#fff",
+        fontStyle: "bold",
+        fill: "#33080f",
       })
       .setOrigin(0.5);
 

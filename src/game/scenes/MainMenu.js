@@ -44,7 +44,9 @@ export class MainMenu extends Scene {
         this.scale.height / 4,
         "Lawn Mower Billionaire",
         {
-          fontSize: "50px",
+          fontSize: "60px",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
@@ -55,16 +57,18 @@ export class MainMenu extends Scene {
         this.scale.height / 2 + 100,
         "Press ENTER to play",
         {
-          fontSize: "32px",
-          fill: "#fff",
+          fontSize: "50px",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
 
     this.controlsText = this.add
       .text(this.scale.width / 2, this.scale.height / 2.4, "Move: ARROW KEYS", {
-        fontSize: "20px",
-        fill: "#ffffff",
+        fontSize: "30px",
+        fontStyle: "bold",
+        fill: "#33080f",
       })
       .setOrigin(0.5);
 
@@ -74,8 +78,9 @@ export class MainMenu extends Scene {
         this.scale.height / 2.1,
         "Cut grass while avoiding tractors to earn € → Become a billionaire!",
         {
-          fontSize: "20px",
-          fill: "#ffffff",
+          fontSize: "22px",
+          fontStyle: "bold",
+          fill: "#33080f",
         },
       )
       .setOrigin(0.5);
@@ -95,7 +100,8 @@ export class MainMenu extends Scene {
     this.add
       .text(this.scale.width - 121, this.scale.height - 100, "Made with", {
         fontSize: "20px",
-        fill: "#fff",
+        fontStyle: "bold",
+        fill: "#33080f",
       })
       .setOrigin(0.5);
 

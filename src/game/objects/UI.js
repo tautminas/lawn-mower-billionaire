@@ -5,8 +5,9 @@ export default class UI {
     this.scene = scene;
 
     this.scoreText = scene.add.text(20, 20, "Cash: 0 €", {
-      fontSize: "24px",
-      color: "#ffffff",
+      fontSize: "42px",
+      fontStyle: "bold",
+      color: "#33080f",
     });
 
     this.scoreText.setDepth(100);
@@ -16,7 +17,9 @@ export default class UI {
   }
 
   setScore(score) {
-    const formattedScore = score.toLocaleString('en-US', { maximumFractionDigits: 0 }).replace(/,/g, ' ');
+    const formattedScore = score
+      .toLocaleString("en-US", { maximumFractionDigits: 0 })
+      .replace(/,/g, " ");
     this.scoreText.setText("Cash: " + formattedScore + " €");
   }
 
@@ -27,18 +30,20 @@ export default class UI {
     const centerY = this.scene.scale.height / 2;
 
     this.gameOverText = this.scene.add
-      .text(centerX, centerY - 40, "GAME OVER", {
-        fontSize: "48px",
-        fill: "#ff0000",
+      .text(centerX, centerY - 60, "GAME OVER", {
+        fontSize: "96px",
+        fontStyle: "bold",
+        fill: "#be0f00ff",
       })
       .setOrigin(0.5)
       .setDepth(100)
       .setScrollFactor(0);
 
     this.replayText = this.scene.add
-      .text(centerX, centerY + 40, "Press ENTER to play again", {
-        fontSize: "28px",
-        fill: "#ffffff",
+      .text(centerX, centerY + 60, "Press ENTER to play again", {
+        fontSize: "56px",
+        fontStyle: "bold",
+        fill: "#33080f",
       })
       .setOrigin(0.5)
       .setDepth(100)
