@@ -10,16 +10,16 @@ const config = {
   width: 1024,
   height: 768,
   parent: "game-container",
-  backgroundColor: "#00a86b",
+  backgroundColor: "#a3d998",
   scale: {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,
   },
   physics: {
     default: "arcade",
-    arcade: {
-      debug: true,
-    },
+    // arcade: {
+    //   debug: true,
+    // },
   },
   scene: [MainGame, MainMenu, WinScene],
 };
