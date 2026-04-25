@@ -21,7 +21,7 @@ const config = {
     //   debug: true,
     // },
   },
-  scene: [MainGame, MainMenu, WinScene],
+  scene: [MainMenu, MainGame, WinScene],
 };
 
 const StartGame = (parent) => {
