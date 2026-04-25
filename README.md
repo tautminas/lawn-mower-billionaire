@@ -15,15 +15,23 @@ Move your lawn mower across the field to cut grass and earn euros automatically.
 This project is a submission for **Gamedev.js Jam 2026**:  
 https://itch.io/jam/gamedevjs-2026
 
+## 🎯 Controls
+
+- Move: ↑ ↓ ← →
+
 ## 🛠️ Built With
 
 - Phaser
 - Inkscape
 - 1BitDragon
 
-## 👤 Author
+## 🎨 Color Palette
 
-Tautminas Cibulskis
+This game uses the **Solarian24 palette**:
+
+https://lospec.com/palette-list/solarian24
+
+Created by Chicknhawk
 
 ## ▶️ Run Locally
 
@@ -45,6 +53,6 @@ npm run dev
 http://localhost:8080
 ```
 
-## 🎯 Controls
+## 👤 Author
 
-- Move: ↑ ↓ ← →
+Tautminas Cibulskis
