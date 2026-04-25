@@ -28,4 +28,22 @@ export default class Euro extends Phaser.Physics.Arcade.Image {
       },
     });
   }
+
+  goDown() {
+    if (!this.scene) return;
+
+    this.scene.tweens.add({
+      targets: this,
+      y:
+        this.scene.cameras.main.scrollY +
+        this.scene.cameras.main.height +
+        this.displayHeight,
+      angle: 90,
+      duration: 2000,
+      ease: "Cubic.easeIn",
+      onComplete: () => {
+        this.destroy();
+      },
+    });
+  }
 }

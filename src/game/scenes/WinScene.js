@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
 import * as Phaser from "phaser";
 import { AudioMixin } from "../mixins/AudioMixin.js";
+import Euro from "../objects/Euro.js";
 
 export class WinScene extends Scene {
   constructor() {
@@ -16,6 +17,25 @@ export class WinScene extends Scene {
 
   create() {
     this.playBackgroundMusic();
+
+    const temp = new Euro(this, 0, 0);
+    const stepX = temp.displayWidth;
+    const stepY = temp.displayHeight;
+    temp.destroy();
+    this.winEuros = [];
+    const buffer = 20;
+    for (let x = stepX / 2; x < this.scale.width; x += stepX) {
+      const euro = new Euro(this, x, -stepY / 2 - buffer);
+      this.winEuros.push(euro);
+    }
+    this.time.addEvent({
+      delay: 2000,
+      loop: true,
+      callback: () => {
+        const euro = Phaser.Utils.Array.GetRandom(this.winEuros);
+        euro.goDown();
+      },
+    });
 
     this.congratsText = this.add
       .text(

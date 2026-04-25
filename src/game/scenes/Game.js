@@ -15,7 +15,7 @@ export class Game extends Scene {
   init() {
     this.score = 0;
     this.targetEuros = 1000000000;
-    this.targetGrass = 1234;
+    this.targetGrass = 1;
     this.eurosPerGrass = this.targetEuros / this.targetGrass;
   }
 
